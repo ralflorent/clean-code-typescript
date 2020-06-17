@@ -306,27 +306,32 @@ class Projector {
 
 ## Fonctions
 
-### Function arguments (2 or fewer ideally)
+### Paramètres d'une fonction (2 or moins idéalement)
 
-Limiting the amount of function parameters is incredibly important because it makes testing your function easier.
-Having more than three leads to a combinatorial explosion where you have to test tons of different cases with each separate argument.
+Limiter le nombre de paramètres d'une fonction est extrêmement important car cela
+facilite le test de votre fonction. En avoir plus de trois conduit à une explosion
+combinatoire où chaque argument doit être testé séparément dans des tonnes de cas
+différents.
 
-One or two arguments is the ideal case, and three should be avoided if possible. Anything more than that should be consolidated.
-Usually, if you have more than two arguments then your function is trying to do too much.
-In cases where it's not, most of the time a higher-level object will suffice as an argument.
+Avoir un ou deux paramètres par fonction est idéal, et trois devraient être évités
+si possible. Rien de plus que cela devrait être consolidé. Assez souvent, si vous
+avez plus de deux arguments, votre fonction essaie d'en faire trop à la fois.
+Dans les cas où ce n'est pas le cas, la plupart du temps, un objet de niveau
+supérieur suffit comme argument.
 
-Consider using object literals if you are finding yourself needing a lot of arguments.
+Pensez à utiliser des objets littéraux si vous avez besoin de beaucoup plus de paramètres.
 
-To make it obvious what properties the function expects, you can use the [destructuring](https://basarat.gitbook.io/typescript/future-javascript/destructuring) syntax.
-This has a few advantages:
+Pour rendre évidentes les propriétés que la fonction attend, vous pouvez utiliser
+la syntaxe de [déstructuration](https://basarat.gitbook.io/typescript/future-javascript/destructuring).
+Cela présente quelques avantages :
 
-1. When someone looks at the function signature, it's immediately clear what properties are being used.
+1. Quand quelqu'un regarde la signature d’une fonction, il est immédiatement clair quelles propriétés sont en train d’être utilisées.
 
-2. It can be used to simulate named parameters.
+2. Il peut être utilisé pour simuler des paramètres avec des noms.
 
-3. Destructuring also clones the specified primitive values of the argument object passed into the function. This can help prevent side effects. Note: objects and arrays that are destructured from the argument object are NOT cloned.
+3. La déstructuration clone également les valeurs primitives spécifiées de l'objet passé comme paramètre dans la fonction. Cela peut aider à prévenir les effets secondaires. Remarque: les objets et les tableaux qui sont déstructurés à partir de l'objet argument ne sont PAS clonés.
 
-4. TypeScript warns you about unused properties, which would be impossible without destructuring.
+4. TypeScript vous avertit des propriétés non-utilisées, qui seraient impossibles sans déstructuration.
 
 **Mal:**
 
@@ -353,7 +358,7 @@ createMenu({
 });
 ```
 
-You can further improve readability by using [type aliases](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases):
+Vous pouvez encore améliorer la lisibilité en utilisant [type aliases (ou type d'alias)](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases):
 
 ```ts
 
@@ -373,9 +378,9 @@ createMenu({
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Functions should do one thing
+### Les fonctions devraient faire une chose
 
-This is by far the most important rule in software engineering. When functions do more than one thing, they are harder to compose, test, and reason about. When you can isolate a function to just one action, it can be refactored easily and your code will read much cleaner. If you take nothing else away from this guide other than this, you'll be ahead of many developers.
+C'est de loin la règle la plus importante en ingénierie de logiciels. Lorsque les fonctions font plus d'une chose, elles sont plus difficiles à composer, à tester et à raisonner. Lorsque vous arrivez à isoler une fonction afin d’exécuter une seule tâche, elle peut être facilement refactorisée et votre code sera beaucoup plus net. Si vous ne prenez en compte ce qui est dit dans ce guide, vous serez en avance sur de nombreux développeurs.
 
 **Mal:**
 
@@ -405,7 +410,7 @@ function isActiveClient(client: Client) {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Function names should say what they do
+### Les noms de fonction doivent préciser ce qu'ils font
 
 **Mal:**
 
@@ -433,9 +438,9 @@ addMonthToDate(date, 1);
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Functions should only be one level of abstraction
+### Les fonctions ne doivent avoir qu'un niveau d'abstraction
 
-When you have more than one level of abstraction your function is usually doing too much. Splitting up functions leads to reusability and easier testing.
+Quand vous avez plus d'un niveau d'abstraction, votre fonction en fait généralement trop. La division des fonctions conduit à une réutilisabilité et à des tests plus faciles.
 
 **Mal:**
 
@@ -501,18 +506,25 @@ function parse(tokens: Token[]): SyntaxTree {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Remove duplicate code
+### Eliminer la partie dupliquée du code
 
-Do your absolute best to avoid duplicate code.
-Duplicate code is bad because it means that there's more than one place to alter something if you need to change some logic.
+Faites de votre mieux pour éviter la duplication de certaines parties du votre code.
+La duplication du code est mauvaise car cela signifie qu'il y a plus d'un endroit
+pour modifier quelque chose si vous devez changer une logique.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your tomatoes, onions, garlic, spices, etc.
-If you have multiple lists that you keep this on, then all have to be updated when you serve a dish with tomatoes in them.
-If you only have one list, there's only one place to update!
+Imaginez que vous dirigiez un restaurant et que vous gardiez une trace de votre
+inventaire: toutes vos tomates, oignons, ail, épices, etc. Si vous avez plusieurs
+listes sur lesquelles vous gardez cela, alors toutes doivent être mises à jour
+lorsque vous servez un plat avec des tomates. Si vous n'avez qu'une seule liste,
+il n'y a qu'un seul endroit à mettre à jour!
 
-Oftentimes you have duplicate code because you have two or more slightly different things, that share a lot in common, but their differences force you to have two or more separate functions that do much of the same things. Removing duplicate code means creating an abstraction that can handle this set of different things with just one function/module/class.
+Souvent, vous avez du code en double parce que vous avez deux ou plusieurs choses
+légèrement différentes, qui partagent beaucoup en commun, mais leurs différences
+vous obligent à avoir deux ou plusieurs fonctions distinctes qui font à peu près
+les mêmes choses. Supprimer le code en double signifie créer une abstraction qui
+peut gérer cet ensemble de choses différentes avec une seule fonction/module/classe.
 
-Getting the abstraction right is critical, that's why you should follow the [SOLID](#solid) principles. Bad abstractions can be worse than duplicate code, so be careful! Having said this, if you can make a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself updating multiple places anytime you want to change one thing.
+Avoir la correcte abstraction est essentiel, c'est pourquoi vous devez suivre les principes [SOLID](#solid). Les mauvaises abstractions peuvent être pires que le code en double, alors faites attention! Cela dit, si vous pouvez faire une bonne abstraction, faites-le! Ne vous répétez pas, sinon vous vous retrouverez à actualiser plusieurs endroits chaque fois que vous voulez changer une chose.
 
 **Mal:**
 
@@ -588,11 +600,11 @@ function showEmployeeList(employee: Developer | Manager) {
 }
 ```
 
-You should be critical about code duplication. Sometimes there is a tradeoff between duplicated code and increased complexity by introducing unnecessary abstraction. When two implementations from two different modules look similar but live in different domains, duplication might be acceptable and preferred over extracting the common code. The extracted common code in this case introduces an indirect dependency between the two modules.
+Vous devez être critique sur la duplication de code. Parfois, il y a un compromis entre le code dupliqué et une complexité accrue en introduisant une abstraction inutile. Lorsque deux implémentations de deux modules différents se ressemblent mais vivent dans des domaines différents, la duplication peut être acceptable et préférable à l'extraction du code commun. Le code commun extrait dans ce cas introduit une dépendance indirecte entre les deux modules.
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Set default objects with Object.assign or destructuring
+### Définisser les objets par défaut avec “Object.assign” ou déstructuration
 
 **Mal:**
 
@@ -630,7 +642,7 @@ function createMenu(config: MenuConfig) {
 createMenu({ body: 'Bar' });
 ```
 
-Alternatively, you can use destructuring with default values:
+Également, vous pouvez utiliser la déstructuration avec des valeurs par défaut:
 
 ```ts
 type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
@@ -642,15 +654,16 @@ function createMenu({ title = 'Foo', body = 'Bar', buttonText = 'Baz', cancellab
 createMenu({ body: 'Bar' });
 ```
 
-To avoid any side effects and unexpected behavior by passing in explicitly the `undefined` or `null` value, you can tell the TypeScript compiler to not allow it.
-See [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) option in TypeScript.
+Pour éviter tout effet secondaire et tout comportement inattendu en transmettant explicitement la valeur `undefined` ou `null`, vous pouvez dire au compilateur de TypeScript de ne pas l'autoriser.
+Consultez [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) l'option dans TypeScript.
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Don't use flags as function parameters
+### Ne pas utiliser pas des indicateurs comme paramètres de fonction
 
-Flags tell your user that this function does more than one thing.
-Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+Les indicateurs indiquent à votre utilisateur que cette fonction fait plus d'une chose.
+Les fonctions devraient faire une chose. Divisez vos fonctions si elles suivent des
+chemins de code différents basés sur un booléen.
 
 **Mal:**
 
@@ -678,16 +691,13 @@ function createFile(name: string) {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Avoid Side Effects (part 1)
+### Éviter les effets secondaires (partie 1)
 
-A function produces a side effect if it does anything other than take a value in and return another value or values.
-A side effect could be writing to a file, modifying some global variable, or accidentally wiring all your money to a stranger.
+Une fonction produit un effet secondaire si elle fait autre chose que de prendre une valeur et de renvoyer une ou plusieurs autres valeurs. Un effet secondaire pourrait être d'écrire dans un fichier, de modifier une variable globale ou de transférer accidentellement tout votre argent à un étranger.
 
-Now, you do need to have side effects in a program on occasion. Like the previous example, you might need to write to a file.
-What you want to do is to centralize where you are doing this. Don't have several functions and classes that write to a particular file.
-Have one service that does it. One and only one.
+Maintenant, vous devez avoir des effets secondaires dans un programme à l'occasion. Comme dans l'exemple précédent, vous devrez peut-être écrire dans un fichier. Ce que vous voulez faire, c'est de centraliser où vous faites cela. Ne pas avoir plusieurs fonctions et classes qui écrivent dans un fichier particulier. Avoir un service qui le fait. Seul et l'unique.
 
-The main point is to avoid common pitfalls like sharing state between objects without any structure, using mutable data types that can be written to by anything, and not centralizing where your side effects occur. If you can do this, you will be happier than the vast majority of other programmers.
+Le point principal est d'éviter les pièges courants comme le partage d'état entre des objets sans aucune structure, l'utilisation de types de données mutables qui peuvent être écrits par n'importe quoi, et ne pas centraliser où se produisent vos effets secondaires. Si vous pouvez le faire, vous serez plus heureux que la grande majorité des autres programmeurs.
 
 **Mal:**
 
@@ -720,19 +730,19 @@ console.log(name);
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Avoid Side Effects (part 2)
+### Éviter les effets secondaires (partie 2)
 
-In JavaScript, primitives are passed by value and objects/arrays are passed by reference. In the case of objects and arrays, if your function makes a change in a shopping cart array, for example, by adding an item to purchase, then any other function that uses that `cart` array will be affected by this addition. That may be great, however it can be bad too. Let's imagine a bad situation:
+En JavaScript, les primitives sont passées par valeur et les objets et tableaux sont passés par référence. Dans le cas d'objets et de tableaux, si votre fonction modifie un tableau de panier d'achat, par exemple, en ajoutant un article à acheter, alors toute autre fonction qui utilise ce tableau `cart` sera affectée par cet ajout. C'est peut-être bien, mais ça peut aussi être mauvais. Imaginons une mauvaise situation:
 
-The user clicks the "Purchase", button which calls a `purchase` function that spawns a network request and sends the `cart` array to the server. Because of a bad network connection, the purchase function has to keep retrying the request. Now, what if in the meantime the user accidentally clicks "Add to Cart" button on an item they don't actually want before the network request begins? If that happens and the network request begins, then that purchase function will send the accidentally added item because it has a reference to a shopping cart array that the `addItemToCart` function modified by adding an unwanted item.
+L'utilisateur clique sur le bouton “Achat”, qui appelle une fonction `purchase` qui génère une demande réseau et envoie le tableau `cart` au serveur. En raison d'une mauvaise connexion réseau, la fonction d'achat doit continuer à réessayer la demande. Maintenant, que se passe-t-il si, dans l'intervalle, l'utilisateur clique accidentellement sur le bouton `addItemToCart` sur un article qu'il ne souhaite pas avant le début de la demande réseau? Si cela se produit et que la demande de réseau commence, alors cette fonction d'achat enverra l'article ajouté accidentellement car il a une référence à un tableau de panier d'achat que la fonction `addItemToCart` a modifié en ajoutant un article indésirable.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`, edit it, and return the clone. This ensures that no other functions that are holding onto a reference of the shopping cart will be affected by any changes.
+Une excellente solution serait que `addItemToCart` clone toujours le` cart`, le modifie et renvoie le clone. Cela garantit qu'aucune autre fonction conservant une référence du panier ne sera affectée par des modifications.
 
-Two caveats to mention to this approach:
+Deux avertissements à mentionner à cette approche:
 
-1. There might be cases where you actually want to modify the input object, but when you adopt this programming practice you will find that those cases are pretty rare. Most things can be refactored to have no side effects! (see [pure function](https://en.wikipedia.org/wiki/Pure_function))
+1. Il peut y avoir des cas où vous souhaitez réellement modifier l'objet passée comme paramètre, mais lorsque vous adoptez cette pratique de programmation, vous constaterez que ces cas sont assez rares. La plupart des choses peuvent être refactorisées pour n'avoir aucun effet secondaire! (voir [fonction pure](https://en.wikipedia.org/wiki/Pure_function))
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily, this isn't a big issue in practice because there are great libraries that allow this kind of programming approach to be fast and not as memory intensive as it would be for you to manually clone objects and arrays.
+2. Le clonage de gros objets peut être très coûteux en termes de performances. Heureusement, ce n'est pas un gros problème dans la pratique, car il existe d'excellentes bibliothèques qui permettent à ce type d'approche de programmation d'être rapide et moins gourmande en mémoire que pour le clonage manuel d'objets et de tableaux.
 
 **Mal:**
 
@@ -752,9 +762,9 @@ function addItemToCart(cart: CartItem[], item: Item): CartItem[] {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Don't write to global functions
+### Ne pas écrire dans les fonctions globales
 
-Polluting globals is a bad practice in JavaScript because you could clash with another library and the user of your API would be none-the-wiser until they get an exception in production. Let's think about an example: what if you wanted to extend JavaScript's native Array method to have a `diff` method that could show the difference between two arrays? You could write your new function to the `Array.prototype`, but it could clash with another library that tried to do the same thing. What if that other library was just using `diff` to find the difference between the first and last elements of an array? This is why it would be much better to just use classes and simply extend the `Array` global.
+Polluer les fonctions globales est une mauvaise pratique en JavaScript car vous pourriez entrer en conflit avec une autre bibliothèque et l'utilisateur de votre API ne serait pas plus sage jusqu'à ce qu'il obtienne une exception en production. Réfléchissons à un exemple: et si vous vouliez étendre la méthode native Array de JavaScript pour avoir une méthode `diff` qui pourrait montrer la différence entre deux tableaux? Vous pouvez écrire votre nouvelle fonction dans le `Array.prototype`, mais elle pourrait entrer en conflit avec une autre bibliothèque qui a essayé de faire la même chose. Et si cette autre bibliothèque utilisait simplement `diff` pour trouver la différence entre le premier et le dernier élément d'un tableau? C'est pourquoi il serait beaucoup mieux d'utiliser simplement des classes et d'étendre simplement le global `Array`.
 
 **Mal:**
 
@@ -786,9 +796,9 @@ class MyArray<T> extends Array<T> {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Favor functional programming over imperative programming
+### Privilégier la programmation fonctionnelle à la programmation impérative
 
-Favor this style of programming when you can.
+Privilégiez ce style de programmation quand vous le pouvez.
 
 **Mal:**
 
@@ -841,7 +851,7 @@ const totalOutput = contributions
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Encapsulate conditionals
+### Encapsuler les conditions
 
 **Mal:**
 
@@ -865,7 +875,7 @@ if (canActivateService(subscription, account)) {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Avoid negative conditionals
+### Éviter les conditions négatives
 
 **Mal:**
 
@@ -893,9 +903,9 @@ if (!isEmailUsed(node)) {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Avoid conditionals
+### Éviter les conditions
 
-This seems like an impossible task. Upon first hearing this, most people say, "how am I supposed to do anything without an `if` statement?" The answer is that you can use polymorphism to achieve the same task in many cases. The second question is usually, "well that's great but why would I want to do that?" The answer is a previous clean code concept we learned: a function should only do one thing. When you have classes and functions that have `if` statements, you are telling your user that your function does more than one thing. Remember, just do one thing.
+Cela semble être une tâche impossible. En entendant cela pour la première fois, la plupart des gens disent: “Comment suis-je censé faire quoi que ce soit sans une déclaration `if`?" La réponse est que vous pouvez utiliser le polymorphisme pour réaliser la même tâche dans de nombreux cas. La deuxième question est généralement, "c'est bien, mais pourquoi voudrais-je faire ça?" La réponse est un concept de code propre précédent que nous avons appris: une fonction ne devrait faire qu'une seule chose. Lorsque vous avez des classes et des fonctions qui ont des instructions `if`, vous dites à votre utilisateur que votre fonction fait plus d'une chose. N'oubliez pas, faites juste une chose.
 
 **Mal:**
 
@@ -958,11 +968,10 @@ class Cessna extends Airplane {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Avoid type checking
+### Éviter la vérification de type de donnée
 
-TypeScript is a strict syntactical superset of JavaScript and adds optional static type checking to the language.
-Always prefer to specify types of variables, parameters and return values to leverage the full power of TypeScript features.
-It makes refactoring more easier.
+TypeScript est un superset syntaxique strict de JavaScript et ajoute une vérification de type statique facultative au langage.
+Préférez toujours spécifier des types de variables, des paramètres et des valeurs de retour pour exploiter toute la puissance des fonctionnalités de TypeScript. Cela facilite la refactorisation.
 
 **Mal:**
 
@@ -988,9 +997,9 @@ function travelToTexas(vehicle: Vehicle) {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Don't over-optimize
+### Ne pas trop optimiser
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of times, if you are optimizing then you are just wasting your time. There are good [resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) for seeing where optimization is lacking. Target those in the meantime, until they are fixed if they can be.
+Les navigateurs modernes font beaucoup d'optimisation sous le capot lors de l'exécution. Souvent, si vous optimisez, vous perdez simplement votre temps. Il existe de bonnes [ressources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) pour voir où l'optimisation fait défaut. Ciblez ceux en attendant, jusqu'à ce qu'ils soient corrigés s'ils le peuvent.
 
 **Mal:**
 
@@ -1012,10 +1021,9 @@ for (let i = 0; i < list.length; i++) {
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Remove dead code
+### Éliminer tout code qui ne s’utilise pas
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase.
-If it's not being called, get rid of it! It will still be safe in your version history if you still need it.
+Le code qui ne s’utilise pas est tout aussi mauvais que le code en double. Il n'y a aucune raison de le conserver dans votre base de code. S'il n'est pas appelé, débarrassez-vous-en! Il sera toujours sauvegardé en sécurité dans votre historique de version si vous en avez toujours besoin.
 
 **Mal:**
 
@@ -1045,16 +1053,15 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-### Use iterators and generators
+### Utiliser des itérateurs et des générateurs
 
-Use generators and iterables when working with collections of data used like a stream.
-There are some good reasons:
+Utilisez des générateurs et des itérables lorsque vous travaillez avec des collections de données utilisées comme un flux. Il y a quelques bonnes raisons:
 
-- decouples the callee from the generator implementation in a sense that callee decides how many
-items to access
-- lazy execution, items are streamed on demand
-- built-in support for iterating items using the `for-of` syntax
-- iterables allow to implement optimized iterator patterns
+- dissocie l'appelé de la mise en œuvre du générateur dans le sens où l'appelé décide du nombre
+éléments à accéder
+- exécution paresseuse, les éléments sont diffusés à la demande
+- prise en charge intégrée pour l'itération d'éléments à l'aide de la syntaxe `for-of`
+- les itérables permettent d'implémenter des modèles d'itérateurs optimisés
 
 **Mal:**
 
@@ -1105,9 +1112,7 @@ function print(n: number) {
 print(10);
 ```
 
-There are libraries that allow working with iterables in a similar way as with native arrays, by
-chaining methods like `map`, `slice`, `forEach` etc. See [itiriri](https://www.npmjs.com/package/itiriri) for
-an example of advanced manipulation with iterables (or [itiriri-async](https://www.npmjs.com/package/itiriri-async) for manipulation of async iterables).
+Il existe des bibliothèques qui permettent de travailler avec les itérables de la même manière qu'avec les tableaux natifs, en des méthodes de chaînage comme `map`, `slice`, `forEach` etc. Voir [itiriri](https://www.npmjs.com/package/itiriri) pour un exemple de manipulation avancée avec les itérables (ou [itiriri-async](https://www.npmjs.com/package/itiriri-async) pour la manipulation des itérables asynchrones).
 
 ```ts
 import itiriri from 'itiriri';
@@ -1128,7 +1133,7 @@ itiriri(fibonacci())
 
 **[⬆ retour au haut de page](#table-of-contents)**
 
-## Objects and Data Structures
+## Objets et Structures de données
 
 ### Use getters and setters
 
