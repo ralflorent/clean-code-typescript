@@ -8,16 +8,16 @@ Ce document est une traduction de ce repository rédigé par [labs42io](https://
 
   1. [Introduction](#introduction)
   2. [Variables](#variables)
-  3. [Fonctions](#functions)
-  4. [Objets et Structures de Données](#objects-and-data-structures)
+  3. [Fonctions](#fonctions)
+  4. [Objets et Structures de Données](#objets-et-structures-de-données)
   5. [Classes](#classes)
   6. [SOLID](#solid)
-  7. [Tests](#testing)
-  8. [Concurrence](#concurrency)
-  9. [Gestion des erreurs](#error-handling)
-  10. [Format de code](#formatting)
-  11. [Commentaires](#comments)
-  12. [Traductions](#translations)
+  7. [Tests](#tests)
+  8. [Concurrence](#concurrence)
+  9. [Gestion des erreurs](#gestion-des-erreurs)
+  10. [Format du code](#format-du-code)
+  11. [Commentaires](#commentaires)
+  12. [Traductions](#traductions)
 
 ## Introduction
 
@@ -49,7 +49,7 @@ Enfin, on chasse ces imperfections quand on les revise ensemble avec notre équi
 Ne vous tracassez pas à tout faire durant vos premiers éssais. Cherchez plutôt à
 améliorer le code mis en place!
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ## Variables
 
@@ -74,7 +74,7 @@ function between<T>(value: T, left: T, right: T): boolean {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Utiliser des noms de variables prononçables
 
@@ -100,7 +100,7 @@ type Customer = {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Utiliser le même vocabulaire pour le même type de variable
 
@@ -118,7 +118,7 @@ function getUserData(): User;
 function getUser(): User;
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Utiliser des noms consultables
 
@@ -145,7 +145,7 @@ const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
 setTimeout(restart, MILLISECONDS_IN_A_DAY);
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Utiliser des variables explicatives
 
@@ -169,7 +169,7 @@ for (const [id, user] of users) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Évitez le mapping mental
 
@@ -192,7 +192,7 @@ const subscription = getSubscription();
 const transaction = charge(user, subscription);
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Ne pas ajouter de contexte inutile
 
@@ -226,7 +226,7 @@ function print(car: Car): void {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Utiliser des arguments par défaut au lieu d'un raccourci ou de conditions
 
@@ -249,7 +249,7 @@ function loadPages(count: number = 10) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Utiliser enum pour documenter l'intention
 
@@ -302,7 +302,7 @@ class Projector {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ## Fonctions
 
@@ -376,7 +376,7 @@ createMenu({
 });
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Les fonctions devraient faire une chose
 
@@ -408,7 +408,7 @@ function isActiveClient(client: Client) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Les noms de fonction doivent préciser ce qu'ils font
 
@@ -436,7 +436,7 @@ const date = new Date();
 addMonthToDate(date, 1);
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Les fonctions ne doivent avoir qu'un niveau d'abstraction
 
@@ -504,7 +504,7 @@ function parse(tokens: Token[]): SyntaxTree {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Eliminer la partie dupliquée du code
 
@@ -602,9 +602,9 @@ function showEmployeeList(employee: Developer | Manager) {
 
 Vous devez être critique sur la duplication de code. Parfois, il y a un compromis entre le code dupliqué et une complexité accrue en introduisant une abstraction inutile. Lorsque deux implémentations de deux modules différents se ressemblent mais vivent dans des domaines différents, la duplication peut être acceptable et préférable à l'extraction du code commun. Le code commun extrait dans ce cas introduit une dépendance indirecte entre les deux modules.
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Définisser les objets par défaut avec “Object.assign” ou déstructuration
+### Définir les objets par défaut avec “Object.assign” ou déstructuration
 
 **Mal:**
 
@@ -657,7 +657,7 @@ createMenu({ body: 'Bar' });
 Pour éviter tout effet secondaire et tout comportement inattendu en transmettant explicitement la valeur `undefined` ou `null`, vous pouvez dire au compilateur de TypeScript de ne pas l'autoriser.
 Consultez [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) l'option dans TypeScript.
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Ne pas utiliser pas des indicateurs comme paramètres de fonction
 
@@ -689,7 +689,7 @@ function createFile(name: string) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Éviter les effets secondaires (partie 1)
 
@@ -728,7 +728,7 @@ const encodedName = toBase64(name);
 console.log(name);
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Éviter les effets secondaires (partie 2)
 
@@ -760,7 +760,7 @@ function addItemToCart(cart: CartItem[], item: Item): CartItem[] {
 };
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Ne pas écrire dans les fonctions globales
 
@@ -794,7 +794,7 @@ class MyArray<T> extends Array<T> {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Privilégier la programmation fonctionnelle à la programmation impérative
 
@@ -849,7 +849,7 @@ const totalOutput = contributions
   .reduce((totalLines, output) => totalLines + output.linesOfCode, 0);
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Encapsuler les conditions
 
@@ -873,7 +873,7 @@ if (canActivateService(subscription, account)) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Éviter les conditions négatives
 
@@ -901,7 +901,7 @@ if (!isEmailUsed(node)) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Éviter les conditions
 
@@ -966,7 +966,7 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Éviter la vérification de type de donnée
 
@@ -995,7 +995,7 @@ function travelToTexas(vehicle: Vehicle) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Ne pas trop optimiser
 
@@ -1019,7 +1019,7 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Éliminer tout code qui ne s’utilise pas
 
@@ -1051,7 +1051,7 @@ const req = requestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Utiliser des itérateurs et des générateurs
 
@@ -1131,21 +1131,22 @@ itiriri(fibonacci())
   .forEach(fib => console.log(fib));
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ## Objets et Structures de données
 
-### Use getters and setters
+### Utiliser des "getters" et "setters"
 
-TypeScript supports getter/setter syntax.
-Using getters and setters to access data from objects that encapsulate behavior could be better than simply looking for a property on an object.
-"Why?" you might ask. Well, here's a list of reasons:
+TypeScript supporte la syntaxe getter/setter.
 
-- When you want to do more beyond getting an object property, you don't have to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a server.
+L'utilisation de getters et de setters pour accéder aux données d'objets qui englobent le comportement pourrait être meilleure que la simple recherche d'un attribut sur un objet.
+"Pourquoi?" vous vous demander. Eh bien, voici une liste de raisons:
+
+- Lorsque vous voulez faire plus que d'obtenir l’attribut d'un objet, vous n'avez pas besoin de rechercher et de modifier chaque accesseur dans votre base de code.
+- Valide de façon plus simple en utilisant le mot-clé `set`.
+- Encapsule la représentation interne.
+- Facile à ajouter un log des activités et la gestion des erreurs.
+- Vous pouvez paresseusement charger les attributs de votre objet, disons l'obtenir à partir d'un serveur.
 
 **Mal:**
 
@@ -1197,11 +1198,11 @@ const account = new BankAccount();
 account.balance = 100;
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Make objects have private/protected members
+### Faire en sorte que les objets aient des membres privés/protégés
 
-TypeScript supports `public` *(default)*, `protected` and `private` accessors on class members.
+TypeScript prend en charge les accesseurs `public` *(par défaut)*, `protected` et `private` sur les membres de la classe.
 
 **Mal:**
 
@@ -1240,12 +1241,11 @@ class Circle {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Prefer immutability
+### Préférer l'immuabilité
 
-TypeScript's type system allows you to mark individual properties on an interface / class as *readonly*. This allows you to work in a functional way (unexpected mutation is bad).
-For more advanced scenarios there is a built-in type `Readonly` that takes a type `T` and marks all of its properties as readonly using mapped types (see [mapped types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types)).
+Le système de types de TypeScript vous permet de marquer des propriétés individuelles sur une interface/classe comme *readonly*. Cela vous permet de travailler de manière fonctionnelle (une mutation inattendue est mauvaise). Pour les scénarios plus avancés, il existe un type intégré `Readonly` qui prend un type`T` et marque toutes ses propriétés comme étant “readonly” à l'aide de types mappés (voir [mapped types ou "types mappés"](https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types)).
 
 **Mal:**
 
@@ -1267,8 +1267,8 @@ interface Config {
 }
 ```
 
-Case of Array, you can create a read-only array by using `ReadonlyArray<T>`.
-do not allow changes such as `push()` and `fill()`, but can use features such as `concat()` and `slice()` that do not change the value.
+Dans le cas des tableaux, vous pouvez créer un tableau de *readonly* en utilisant `ReadonlyArray<T>`.
+N'autorisez pas les modifications telles que `push()` et `fill()`, mais plutôt utilisez des fonctionnalités telles que `concat()` et `slice()` vu que celles-ci ne modifient pas la valeur.
 
 **Mal:**
 
@@ -1286,7 +1286,7 @@ array = []; // error
 array.push(100); // error
 ```
 
-Declaring read-only arguments in [TypeScript 3.4 is a bit easier](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#improvements-for-readonlyarray-and-readonly-tuples).
+Déclarer des paramètres de type "read-only" dans [TypeScript 3.4 est un peu plus facile](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#improvements-for-readonlyarray-and-readonly-tuples).
 
 ```ts
 function hoge(args: readonly string[]) {
@@ -1294,7 +1294,7 @@ function hoge(args: readonly string[]) {
 }
 ```
 
-Prefer [const assertions](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#const-assertions) for literal values.
+Préférer les [assertions "const"](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#const-assertions) pour des valeurs littérales.
 
 **Mal:**
 
@@ -1338,12 +1338,11 @@ const result = readonlyData(100);
 result.value = 200; // error
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### type vs. interface
+### type vs interface
 
-Use type when you might need a union or intersection. Use interface when you want `extends` or `implements`. There is no strict rule however, use the one that works for you.
-For a more detailed explanation refer to this [answer](https://stackoverflow.com/questions/37233735/typescript-interfaces-vs-types/54101543#54101543) about the differences between `type` and `interface` in TypeScript.
+Utilisez type lorsque vous pourriez avoir besoin d'une union ou d'une intersection. Utilisez l'interface lorsque vous voulez “étendre” ou “implémenter”. Il n'y a cependant pas de règle stricte, utilisez celle qui vous convient.  Pour une explication plus détaillée, reportez-vous à cette [réponse](https://stackoverflow.com/questions/37233735/typescript-interfaces-vs-types/54101543#54101543) sur les différences entre `type` et` interface` dans TypeScript.
 
 **Mal:**
 
@@ -1396,13 +1395,13 @@ class Square implements Shape {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ## Classes
 
-### Classes should be small
+### Les classes doivent être petites
 
-The class' size is measured by its responsibility. Following the *Single Responsibility principle* a class should be small.
+La taille de la classe est mesurée par sa responsabilité. Suivant le *Principe de Responsabilité Unique*, une classe doit être petite.
 
 **Mal:**
 
@@ -1440,16 +1439,15 @@ class Dashboard {
 // ...
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### High cohesion and low coupling
+### Haute cohésion et faible couplage
 
-Cohesion defines the degree to which class members are related to each other. Ideally, all fields within a class should be used by each method.
-We then say that the class is *maximally cohesive*. In practice, this however is not always possible, nor even advisable. You should however prefer cohesion to be high.
+La cohésion définit le degré de relation entre les membres de la classe. Idéalement, tous les champs d'une classe doivent être utilisés par chaque méthode. On dit alors que la classe est au maximum cohérente. En pratique, cela n'est cependant pas toujours possible, ni même conseillé. Vous devez cependant préférer une cohésion élevée.
 
-Coupling refers to how related or dependent are two classes toward each other. Classes are said to be low coupled if changes in one of them doesn't affect the other one.
+Le couplage fait référence à la façon dont les parents sont liés ou dépendants entre eux. Les classes sont dites à faible couplage si les changements dans l'un d'entre eux n'affectent pas l'autre.
 
-Good software design has **high cohesion** and **low coupling**.
+Une bonne conception logicielle a une **haute cohésion** et un **faible couplage**.
 
 **Mal:**
 
@@ -1520,19 +1518,19 @@ class UserNotifier {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Prefer composition over inheritance
+### Préférer la composition à l'héritage
 
-As stated famously in [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four, you should *prefer composition over inheritance* where you can. There are lots of good reasons to use inheritance and lots of good reasons to use composition. The main point for this maxim is that if your mind instinctively goes for inheritance, try to think if composition could model your problem better. In some cases it can.
+Comme indiqué dans [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) du “Gang of Four”, *vous devriez préférer la composition à l'héritage* où vous le pouvez. Il y a beaucoup de bonnes raisons d'utiliser l'héritage et beaucoup de bonnes raisons d'utiliser la composition. Le point principal de cette maxime est que si votre esprit va instinctivement à l'héritage, essayez de penser si la composition pourrait mieux modéliser votre problème. Dans certains cas, c'est possible.
 
-You might be wondering then, "when should I use inheritance?" It depends on your problem at hand, but this is a decent list of when inheritance makes more sense than composition:
+Vous vous demandez peut-être alors "quand dois-je utiliser l'héritage?" Cela dépend de votre problème, mais c'est une liste décente où l'héritage a plus de sens que la composition:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a" relationship (Human->Animal vs. User->UserDetails).
+1. Votre héritage représente une relation "est-une" et non une relation "a-une" (Humain-> Animal vs Utilisateur-> Détails de l'utilisateur).
 
-2. You can reuse code from the base classes (Humans can move like all animals).
+2. Vous pouvez réutiliser le code des classes de base (les humains peuvent se déplacer comme tous les animaux).
 
-3. You want to make global changes to derived classes by changing a base class. (Change the caloric expenditure of all animals when they move).
+3. Vous souhaitez apporter des modifications globales aux classes dérivées en modifiant une classe de base. (Modifiez la dépense calorique de tous les animaux lorsqu'ils se déplacent).
 
 **Mal:**
 
@@ -1589,11 +1587,11 @@ class EmployeeTaxData {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Use method chaining
+### Utiliser le chaînage des méthodes
 
-This pattern is very useful and commonly used in many libraries. It allows your code to be expressive, and less verbose. For that reason, use method chaining and take a look at how clean your code will be.
+Ce modèle est très utile et couramment utilisé dans de nombreuses bibliothèques. Il permet à votre code d'être expressif et moins verbeux. Pour cette raison, utilisez le chaînage de méthodes et regardez à quel point votre code sera propre.
 
 **Mal:**
 
@@ -1671,13 +1669,13 @@ const query = new QueryBuilder()
   .build();
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ## SOLID
 
-### Single Responsibility Principle (SRP)
+### Principe de Responsabilité Unique ou "Single Responsibility Principle (SRP)"
 
-As stated in Clean Code, "There should never be more than one reason for a class to change". It's tempting to jam-pack a class with a lot of functionality, like when you can only take one suitcase on your flight. The issue with this is that your class won't be conceptually cohesive and it will give it many reasons to change. Minimizing the amount of times you need to change a class is important. It's important because if too much functionality is in one class and you modify a piece of it, it can be difficult to understand how that will affect other dependent modules in your codebase.
+Comme indiqué dans Clean Code, "Il ne devrait jamais y avoir plus d'une raison pour qu'une classe change". Il est tentant d'emballer une classe avec beaucoup de fonctionnalités, comme lorsque vous ne pouvez emporter qu'une seule valise pendant votre vol. Le problème avec cela est que votre classe ne sera pas conceptuellement cohérente et cela lui donnera de nombreuses raisons de changer. Il est important de minimiser le nombre de fois que vous devez changer de classe. C'est important car si trop de fonctionnalités sont dans une classe et que vous en modifiez une partie, il peut être difficile de comprendre comment cela affectera les autres modules dépendants de votre base de code.
 
 **Mal:**
 
@@ -1726,11 +1724,11 @@ class UserSettings {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Open/Closed Principle (OCP)
+### Principe ouvert/fermé ou "Open/Closed Principle (OCP)"
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification." What does that mean though? This principle basically states that you should allow users to add new functionalities without changing existing code.
+Comme l'a déclaré Bertrand Meyer, "les entités logicielles (classes, modules, fonctions, etc.) devraient être ouvertes pour extension, mais fermées pour modification." Mais qu'est-ce que cela signifie? Ce principe stipule essentiellement que vous devez autoriser les utilisateurs à ajouter de nouvelles fonctionnalités sans modifier le code existant.
 
 **Mal:**
 
@@ -1819,13 +1817,13 @@ class HttpRequester {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Liskov Substitution Principle (LSP)
+### Principe de substitution de Liskov ou "Liskov Substitution Principle (LSP)"
 
-This is a scary term for a very simple concept. It's formally defined as "If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.)." That's an even scarier definition.
+C'est un terme effrayant pour un concept très simple. Il est formellement défini comme "Si S est un sous-type de T, alors les objets de type T peuvent être remplacés par des objets de type S (c'est-à-dire que les objets de type S peuvent remplacer des objets de type T) sans altérer aucune des propriétés souhaitables de ce programme (correction, tâche effectuée, etc.)." C'est une définition encore plus effrayante.
 
-The best explanation for this is if you have a parent class and a child class, then the parent class and child class can be used interchangeably without getting incorrect results. This might still be confusing, so let's take a look at the classic Square-Rectangle example. Mathematically, a square is a rectangle, but if you model it using the "is-a" relationship via inheritance, you quickly get into trouble.
+La meilleure explication est que si vous avez une classe parent et une classe enfant, la classe parent et la classe enfant peuvent être utilisées de manière interchangeable sans obtenir de résultats incorrects. Cela peut encore prêter à confusion, alors jetons un coup d'œil à l'exemple classique de Square-Rectangle. Mathématiquement, un carré est un rectangle, mais si vous le modélisez en utilisant la relation "is-a" via l'héritage, vous rencontrez rapidement des problèmes.
 
 **Mal:**
 
@@ -1936,12 +1934,12 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Interface Segregation Principle (ISP)
+### Principe de ségrégation d'interface ou "Interface Segregation Principle (ISP)"
 
-ISP states that "Clients should not be forced to depend upon interfaces that they do not use.". This principle is very much related to the Single Responsibility Principle.
-What it really means is that you should always design your abstractions in a way that the clients that are using the exposed methods do not get the whole pie instead. That also include imposing the clients with the burden of implementing methods that they don’t actually need.
+L'ISP déclare que "les clients ne devraient pas être obligés de dépendre d'interfaces qu'ils n'utilisent pas.". Ce principe est très lié au principe de responsabilité unique.
+Ce que cela signifie vraiment, c'est que vous devez toujours concevoir vos abstractions de manière à ce que les clients qui utilisent les méthodes exposées n'obtiennent pas tout le gâteau à la place. Cela implique également d'imposer aux clients la charge de mettre en œuvre des méthodes dont ils n'ont pas réellement besoin.
 
 **Mal:**
 
@@ -2017,19 +2015,18 @@ class EconomicPrinter implements Printer {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### Dependency Inversion Principle (DIP)
+### Principe d'inversion de dépendance ou "Dependency Inversion Principle (DIP)"
 
-This principle states two essential things:
+Ce principe énonce deux choses essentielles:
 
-1. High-level modules should not depend on low-level modules. Both should depend on abstractions.
+1. Les modules de haut niveau ne doivent pas dépendre de modules de bas niveau. Les deux devraient dépendre d'abstractions.
+2. Les abstractions ne devraient pas dépendre des détails. Les détails doivent dépendre des abstractions.
 
-2. Abstractions should not depend upon details. Details should depend on abstractions.
+Cela peut être difficile à comprendre au début, mais si vous avez travaillé avec Angular, vous avez vu une implémentation de ce principe sous la forme d'une injection de dépendance (DI). Bien qu'il ne s'agisse pas de concepts identiques, DIP empêche les modules de haut niveau de connaître les détails de ses modules de bas niveau et de les configurer. Il peut y parvenir grâce à DI. Un énorme avantage de ceci est qu'il réduit le couplage entre les modules. Le couplage est un très mauvais schéma de développement car il rend votre code difficile à refactoriser.
 
-This can be hard to understand at first, but if you've worked with Angular, you've seen an implementation of this principle in the form of Dependency Injection (DI). While they are not identical concepts, DIP keeps high-level modules from knowing the details of its low-level modules and setting them up. It can accomplish this through DI. A huge benefit of this is that it reduces the coupling between modules. Coupling is a very bad development pattern because it makes your code hard to refactor.
-
-DIP is usually achieved by a using an inversion of control (IoC) container. An example of a powerful IoC container for TypeScript is [InversifyJs](https://www.npmjs.com/package/inversify)
+Le DIP est généralement obtenu en utilisant un conteneur d'inversion de contrôle (IoC). Un exemple de conteneur IoC puissant pour TypeScript est [InversifyJs](https://www.npmjs.com/package/inversify).
 
 **Mal:**
 
@@ -2114,45 +2111,43 @@ const reader = new ReportReader(new JsonFormatter());
 await report = await reader.read('report.json');
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-## Testing
+## Tests
 
-Testing is more important than shipping. If you have no tests or an inadequate amount, then every time you ship code you won't be sure that you didn't break anything.
-Deciding on what constitutes an adequate amount is up to your team, but having 100% coverage (all statements and branches)
-is how you achieve very high confidence and developer peace of mind. This means that in addition to having a great testing framework, you also need to use a good [coverage tool](https://github.com/gotwarlost/istanbul).
+Les tests sont plus importants que l'expédition. Si vous n'avez aucun test ou une quantité insuffisante, chaque fois que vous expédiez du code, vous ne serez pas sûr de ne rien casser.
+Décider de ce qui constitue un montant adéquat appartient à votre équipe, mais avoir une couverture à 100% (tous les relevés et succursales)
+est la façon dont vous obtenez une confiance très élevée et une tranquillité d'esprit de développeur Cela signifie qu'en plus d'avoir un excellent cadre de test, vous devez également utiliser un bon [outil de couverture](https://github.com/gotwarlost/istanbul).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](http://jstherightway.org/#testing-tools) with typings support for TypeScript, so find one that your team prefers. When you find one that works for your team, then aim to always write tests for every new feature/module you introduce. If your preferred method is Test Driven Development (TDD), that is great, but the main point is to just make sure you are reaching your coverage goals before launching any feature, or refactoring an existing one.
+Il n'y a aucune excuse pour ne pas écrire de tests. Il existe [beaucoup de bons frameworks de test JS](http://jstherightway.org/#testing-tools) avec prise en charge des typages pour TypeScript, alors trouvez celui que votre équipe préfère. Lorsque vous en trouvez un qui fonctionne pour votre équipe, essayez de toujours écrire des tests pour chaque nouvelle fonctionnalité / module que vous introduisez. Si votre méthode préférée est le développement piloté par les tests (TDD), c'est très bien, mais le principal est de vous assurer que vous atteignez vos objectifs de couverture avant de lancer une fonctionnalité ou de refactoriser une fonctionnalité existante.
 
-### The three laws of TDD
+### Les trois lois du TDD
 
-1. You are not allowed to write any production code unless it is to make a failing unit test pass.
+1. Vous n'êtes pas autorisé à écrire un code de production, sauf pour effectuer un test unitaire ayant échoué.
+2. Vous n'êtes pas autorisé à écrire plus d'un test unitaire que ce qui est suffisant pour échouer; et les échecs de compilation sont des échecs.
+3. Vous n'êtes pas autorisé à écrire plus de code de production qu'il n'en faut pour réussir le test unitaire ayant échoué.
 
-2. You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures.
+**[⬆ retour en haut](#sommaire)**
 
-3. You are not allowed to write any more production code than is sufficient to pass the one failing unit test.
+### Les règles de F.I.R.S.T
 
-**[⬆ retour au haut de page](#table-of-contents)**
+Les tests propres doivent suivre les règles:
 
-### F.I.R.S.T. rules
+- **Fast**: les tests *rapides* doivent être rapides car nous voulons les exécuter fréquemment.
 
-Clean tests should follow the rules:
+- **Independent**: les tests *indépendants* ne devraient pas dépendre les uns des autres. Ils doivent fournir la même sortie, qu'ils soient exécutés indépendamment ou tous ensemble dans n'importe quel ordre.
 
-- **Fast** tests should be fast because we want to run them frequently.
+- **Repeatable**: tests should be repeatable in any environment and there should be no excuse for why they fail.
 
-- **Independent** tests should not depend on each other. They should provide same output whether run independently or all together in any order.
+- **Self-Validating**: un test doit répondre avec *Réussi* ou *Échoué*. Vous n'avez pas besoin de comparer les fichiers journaux pour répondre si un test a réussi.
 
-- **Repeatable** tests should be repeatable in any environment and there should be no excuse for why they fail.
+- **Timely**: des tests unitaires *opportuns* doivent être écrits avant le code de production. Si vous écrivez des tests après le code de production, vous pourriez trouver les tests d'écriture trop difficiles.
 
-- **Self-Validating** a test should answer with either *Passed* or *Failed*. You don't need to compare log files to answer if a test passed.
+**[⬆ retour en haut](#sommaire)**
 
-- **Timely** unit tests should be written before the production code. If you write tests after the production code, you might find writing tests too hard.
+### Concept unique par test
 
-**[⬆ retour au haut de page](#table-of-contents)**
-
-### Single concept per test
-
-Tests should also follow the *Single Responsibility Principle*. Make only one assert per unit test.
+Les tests doivent également suivre le *principe de responsabilité unique*. Faites une seule assertion par test unitaire.
 
 **Mal:**
 
@@ -2198,11 +2193,11 @@ describe('AwesomeDate', () => {
 });
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-### The name of the test should reveal its intention
+### Le nom du test doit révéler son intention
 
-When a test fail, its name is the first indication of what may have gone wrong.
+Lorsqu'un test échoue, son nom est la première indication de ce qui peut avoir mal tourné.
 
 **Mal:**
 
@@ -2232,9 +2227,9 @@ describe('Calendar', () => {
 });
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-## Concurrency
+## Concurrence
 
 ### Prefer promises vs callbacks
 
@@ -2303,7 +2298,7 @@ Promises supports a few helper methods that help make code more concise:
 
 `Promise.all` is especially useful when there is a need to run tasks in parallel. `Promise.race` makes it easier to implement things like timeouts for promises.
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Async/Await are even cleaner than Promises
 
@@ -2351,9 +2346,9 @@ try {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-## Error Handling
+## Gestion des erreurs
 
 Thrown errors are a good thing! They mean the runtime has successfully identified when something in your program has gone wrong and it's letting you know by stopping function
 execution on the current stack, killing the process (in Node), and notifying you in the console with a stack trace.
@@ -2418,7 +2413,7 @@ function calculateTotal(items: Item[]): Failable<number, 'empty'> {
 
 For the detailed explanation of this idea refer to the [original post](https://medium.com/@dhruvrajvanshi/making-exceptions-type-safe-in-typescript-c4d200ee78e9).
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Don't ignore caught errors
 
@@ -2454,7 +2449,7 @@ try {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Don't ignore rejected promises
 
@@ -2495,9 +2490,9 @@ try {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-## Formatting
+## Format du code
 
 Formatting is subjective. Like many rules herein, there is no hard and fast rule that you must follow. The main point is *DO NOT ARGUE* over formatting. There are tons of tools to automate this. Use one! It's a waste of time and money for engineers to argue over formatting. The general rule to follow is *keep consistent formatting rules*.
 
@@ -2558,7 +2553,7 @@ type Container = { /* ... */ }
 Prefer using `PascalCase` for class, interface, type and namespace names.
 Prefer using `camelCase` for variables, functions and class members.
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Function callers and callees should be close
 
@@ -2647,7 +2642,7 @@ const review = new PerformanceReview(employee);
 review.review();
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Organize imports
 
@@ -2693,7 +2688,7 @@ import { ApiCredentials, Adapters } from './common/api/authorization';
 import { ConfigPlugin } from './plugins/config/configPlugin';
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Use typescript aliases
 
@@ -2727,9 +2722,9 @@ import { UserService } from '@services/UserService';
 ...
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-## Comments
+## Commentaires
 
 The use of a comments is an indication of failure to express without them. Code should be the only source of truth.
 
@@ -2754,7 +2749,7 @@ const isSubscriptionActive = subscription.endDate > Date.now;
 if (isSubscriptionActive) { /* ... */ }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Don't leave commented out code in your codebase
 
@@ -2780,7 +2775,7 @@ type User = {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Don't have journal comments
 
@@ -2808,7 +2803,7 @@ function combine(a: number, b: number): number {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### Avoid positional markers
 
@@ -2870,7 +2865,7 @@ class Client {
 };
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
 ### TODO comments
 
@@ -2898,9 +2893,9 @@ function getActiveSubscriptions(): Promise<Subscription[]> {
 }
 ```
 
-**[⬆ retour au haut de page](#table-of-contents)**
+**[⬆ retour en haut](#sommaire)**
 
-## Translations
+## Traductions
 
 This is also available in other languages:
 
