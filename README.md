@@ -13,9 +13,9 @@ Ce document est une traduction de ce repository rédigé par [labs42io](https://
   5. [Classes](#classes)
   6. [SOLID](#solid)
   7. [Tests](#tests)
-  8. [Opérations concurrentes](#opérations-concurrentes)
+  8. [Opérations Concurrentes](#opérations-concurrentes)
   9. [Gestion des erreurs](#gestion-des-erreurs)
-  10. [Formatage du code](#formatage-du-code)
+  10. [Formatage du Code](#formatage-du-code)
   11. [Commentaires](#commentaires)
   12. [Traductions](#traductions)
 
@@ -1223,7 +1223,7 @@ itiriri(fibonacci())
 
 **[⬆ retour en haut](#sommaire)**
 
-## Objets et Structures de données
+## Objets et Structures de Données
 
 ### Utiliser des "getters" et "setters"
 
@@ -2316,8 +2316,8 @@ Les tests propres doivent suivre les règles:
 Ils doivent fournir la même sortie, qu'ils soient exécutés indépendamment ou tous
 ensemble dans n'importe quel ordre.
 
-- **Repeatable**: tests should be repeatable in any environment and there should
-be no excuse for why they fail.
+- **Repeatable**: les tests doivent être reproductibles dans tous les environnements et
+ne soyez pas une excuse pour pourquoi ils échouent.
 
 - **Self-Validating**: un test doit répondre avec *Réussi* ou *Échoué*. Vous n'avez
 pas besoin de comparer les fichiers journaux pour répondre si un test a réussi.
@@ -2413,7 +2413,7 @@ describe('Calendar', () => {
 
 **[⬆ retour en haut](#sommaire)**
 
-## Opérations concurrentes
+## Opérations Concurrentes
 
 ### Préférer les promesses aux "callbacks"
 
@@ -2540,7 +2540,7 @@ try {
 
 **[⬆ retour en haut](#sommaire)**
 
-## Gestion des erreurs
+## Gestion des Erreurs
 
 Les erreurs lancées sont une bonne chose! Elles signifient que le runtime a
 réussi à identifier quand quelque chose dans votre programme a mal tourné et
@@ -2696,7 +2696,7 @@ try {
 
 **[⬆ retour en haut](#sommaire)**
 
-## Formatage du code
+## Formatage du Code
 
 Le formatage est subjectif. Comme beaucoup de règles ici, il n'y a pas de règle
 stricte que vous devez suivre. Le but principal est *NE PAS DISCUTER* sur le formatage.
